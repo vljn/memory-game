@@ -15,11 +15,15 @@ function App() {
   function handleStartClick(difficulty) {
     if (difficulty === 'custom') {
       const customDifficulty = parseInt(prompt('Enter the number of emojis (max 100):'));
-      if (customDifficulty > 100) {
+      console.log(customDifficulty);
+      if (isNaN(customDifficulty)) {
+        alert('Please enter a valid number');
+        return;
+      } else if (customDifficulty > 100) {
         alert('Maximum number of emojis is 100');
         return;
-      } else if (customDifficulty < 0) {
-        alert("Can't set a negative value");
+      } else if (customDifficulty < 1) {
+        alert('Value must be greater than 0');
         return;
       }
       setDifficulty(customDifficulty);
