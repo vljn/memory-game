@@ -1,0 +1,58 @@
+.start {
+  font-size: 3rem;
+  color: var(--primary-dark);
+  margin: 2em 4em;
+}
+
+.start h1 {
+  text-align: center;
+}
+
+.start p {
+  text-align: center;
+}
+
+.start h3 {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.buttons button {
+  background-color: var(--primary-dark);
+  border-radius: 24px;
+  border: 2px solid var(--primary-content);
+  padding: 0.5em 1.5em;
+  font-family: inherit;
+  font-size: 0.5em;
+  color: var(--primary-content);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 850px) {
+  .start {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .start {
+    font-size: 1.2rem;
+    margin: 2em 3em;
+  }
+
+  .buttons {
+    gap: 0.5em;
+    font-size: 1.5em;
+  }
+}

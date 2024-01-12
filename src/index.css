@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Crafty+Girls&family=Homemade+Apple&family=Itim&family=Pacifico&display=swap');
+:root {
+  --primary: #f9bc8e;
+  --primary-dark: #f69f5e;
+  --primary-content: #813b07;
+  --background: #f2efed;
+  --foreground: #fcfbfb;
+  --border: #e4deda;
+  font-family: Itim, sans-serif;
+  color: var(--primary);
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+}
+
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+h1 {
+  margin: 0;
+}

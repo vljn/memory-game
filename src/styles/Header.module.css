@@ -1,0 +1,15 @@
+.header {
+  background-color: var(--foreground);
+  border: 2px solid var(--border);
+  padding: 1em 2em;
+  font-size: 1.2rem;
+  color: var(--primary-dark);
+  user-select: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 550px) {
+  .header {
+    font-size: 1rem;
+  }
+}

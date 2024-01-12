@@ -1,0 +1,18 @@
+.image {
+  border: none;
+  padding: 0;
+  height: min-content;
+}
+
+.image video {
+  object-fit: cover;
+  width: 200px;
+  border: 2px solid var(--border);
+  border-radius: 5%;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.image video:hover {
+  transform: scale(1.1);
+}
