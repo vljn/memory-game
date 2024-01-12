@@ -11,7 +11,7 @@ export default function Game({ numberOfImages, bestScore, updateBestScore, updat
   const [score, setScore] = useState(0);
   const [gifs, setGifs] = useState([]);
 
-  if (score === numberOfImages) {
+  if (!loading && score === gifs.length) {
     updateStatus('victory');
   }
 
@@ -20,9 +20,10 @@ export default function Game({ numberOfImages, bestScore, updateBestScore, updat
       setHasError(false);
       try {
         const fetchedGifs = await getGifs(numberOfImages);
+        const shuffledGifs = arrayShuffle(fetchedGifs);
         setLoading(false);
         setGifs(
-          fetchedGifs.map((gif) => {
+          shuffledGifs.map((gif) => {
             return { src: gif, clicked: false };
           })
         );
@@ -62,7 +63,7 @@ export default function Game({ numberOfImages, bestScore, updateBestScore, updat
 
   function renderGifs() {
     if (hasError) return;
-    if (loading) {
+    if (loading || gifs.length === 0) {
       return <Loading />;
     }
     return (

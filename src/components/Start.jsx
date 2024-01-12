@@ -23,6 +23,7 @@ export default function Start({ onClick, status }) {
         <button onClick={() => onClick('easy')}>Easy</button>
         <button onClick={() => onClick('normal')}>Normal</button>
         <button onClick={() => onClick('hard')}>Hard</button>
+        <button onClick={() => onClick('custom')}>Custom</button>
       </div>
     </div>
   );

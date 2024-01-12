@@ -10,10 +10,22 @@ function App() {
   const [difficulty, setDifficulty] = useState('');
   const [gameStatus, setGameStatus] = useState('first');
   const [bestScore, setBestScore] = useState(0);
-  const difficulties = { easy: 5, normal: 10, hard: 15 };
+  let difficulties = { easy: 6, normal: 10, hard: 15 };
 
   function handleStartClick(difficulty) {
-    setDifficulty(difficulty);
+    if (difficulty === 'custom') {
+      const customDifficulty = parseInt(prompt('Enter the number of emojis (max 100):'));
+      if (customDifficulty > 100) {
+        alert('Maximum number of emojis is 100');
+        return;
+      } else if (customDifficulty < 0) {
+        alert("Can't set a negative value");
+        return;
+      }
+      setDifficulty(customDifficulty);
+    } else {
+      setDifficulty(difficulties[difficulty]);
+    }
     setGameStatus('playing');
   }
 
@@ -22,7 +34,7 @@ function App() {
       <Header updateStatus={setGameStatus}>Emoji Memory Game</Header>
       {gameStatus === 'playing' ? (
         <Game
-          numberOfImages={difficulties[difficulty]}
+          numberOfImages={difficulty}
           bestScore={bestScore}
           updateBestScore={setBestScore}
           updateStatus={setGameStatus}
