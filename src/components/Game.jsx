@@ -10,32 +10,38 @@ export default function Game({ numberOfImages, bestScore, updateBestScore, updat
   const [hasError, setHasError] = useState(false);
   const [score, setScore] = useState(0);
   const [gifs, setGifs] = useState([]);
+  const [tryAgain, setTryAgain] = useState(false);
+  const [initial, setInitial] = useState(true);
 
-  if (!loading && score === gifs.length) {
+  if (!loading && !hasError && !tryAgain && score === gifs.length) {
     updateStatus('victory');
   }
 
   useEffect(() => {
     const fetchData = async () => {
-      setHasError(false);
+      setInitial(false);
+      setLoading(true);
+      setTryAgain(false);
       try {
         const fetchedGifs = await getGifs(numberOfImages);
         const shuffledGifs = arrayShuffle(fetchedGifs);
-        setLoading(false);
         setGifs(
           shuffledGifs.map((gif) => {
             return { src: gif, clicked: false };
           })
         );
-      } catch (error) {
-        setHasError(true);
+        setHasError(false);
         setLoading(false);
-        setTimeout(() => setLoading(true), 5000);
+        setTryAgain(false);
+      } catch {
+        setHasError(true);
+        setTimeout(() => {
+          setTryAgain(true);
+        }, 1000);
       }
     };
-
-    fetchData();
-  }, [numberOfImages, loading]);
+    if (initial || tryAgain) fetchData();
+  }, [tryAgain, numberOfImages, initial]);
 
   function handleImageClick(e) {
     const clickedSrc = e.target.currentSrc;
@@ -62,8 +68,7 @@ export default function Game({ numberOfImages, bestScore, updateBestScore, updat
   }
 
   function renderGifs() {
-    if (hasError) return;
-    if (loading || gifs.length === 0) {
+    if (hasError || tryAgain || loading || gifs.length === 0) {
       return <Loading />;
     }
     return (
@@ -89,7 +94,10 @@ export default function Game({ numberOfImages, bestScore, updateBestScore, updat
   return (
     <div style={{ position: 'relative' }}>
       {renderError()}
-      <div className={styles.score}>Score: {score}</div>
+      {!loading && !hasError && !tryAgain ? (
+        <div className={styles.score}>Score: {score}</div>
+      ) : null}
+
       {renderGifs()}
     </div>
   );
