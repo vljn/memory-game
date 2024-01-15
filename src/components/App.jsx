@@ -10,12 +10,11 @@ function App() {
   const [difficulty, setDifficulty] = useState('');
   const [gameStatus, setGameStatus] = useState('first');
   const [bestScore, setBestScore] = useState(0);
-  let difficulties = { easy: 6, normal: 10, hard: 15 };
+  let difficulties = { easy: 5, normal: 10, hard: 15 };
 
   function handleStartClick(difficulty) {
     if (difficulty === 'custom') {
       const customDifficulty = parseInt(prompt('Enter the number of emojis (max 100):'));
-      console.log(customDifficulty);
       if (isNaN(customDifficulty)) {
         alert('Please enter a valid number');
         return;
