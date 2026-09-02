@@ -37,3 +37,7 @@ npm run lint          # check code style
 3. Cards shuffle after each click
 4. Clicking the same emoji twice ends the game
 5. Click all emojis to win
+
+## License
+
+MIT
